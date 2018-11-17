@@ -18,15 +18,7 @@ public class Powerup : MonoBehaviour
     {
         if (coll.gameObject.tag == "Player")
         {
-            switch (TypePowerup)
-            {
-                case "TripleShot":
-                    coll.GetComponent<Player>().TripleShotOn();
-                    break;
-                case "SpeedBoost":
-                    coll.GetComponent<Player>().SpeedBoostOn();
-                    break;  
-            }
+            coll.gameObject.GetComponent<Player>().EnablePowerUp(TypePowerup);
             Destroy(this.gameObject);
         }
 

@@ -82,15 +82,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SpeedBoostOn()
+    public void EnablePowerUp(string type)
     {
-        playerSpeed = playerSpeed + 3f;
-        StartCoroutine(SpeedBoostOff());
-    }
-    public void TripleShotOn()
-    {
-        canTripleShot = true;
-        StartCoroutine(TripleShotOff());
+        switch (type)
+        {
+            case "TripleShot":
+                canTripleShot = true;
+                StartCoroutine(TripleShotOff());
+                break;
+            case "SpeedBoost":
+                playerSpeed = playerSpeed + 3f;
+                StartCoroutine(SpeedBoostOff());
+                break;
+        }     
     }
 
     public IEnumerator TripleShotOff()
