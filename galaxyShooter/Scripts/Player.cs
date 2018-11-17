@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,13 +20,6 @@ public class Player : MonoBehaviour
     public float playerSpeed = 1;
 
     private float horizontalInput, verticalInput;
-
-
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -93,10 +86,10 @@ public class Player : MonoBehaviour
                 playerSpeed = playerSpeed + 3f;
                 break;
         }
-        TurnOffPowerUp(type);
+        StartCoroutine(TurnOffPowerUp(type));
     }
 
-    public IEnumerable TurnOffPowerUp(string type)
+    public IEnumerator TurnOffPowerUp(string type)
     {
         yield return new WaitForSeconds(5.0f);
         switch (type)
@@ -110,4 +103,3 @@ public class Player : MonoBehaviour
         }
     }
 }
-    
