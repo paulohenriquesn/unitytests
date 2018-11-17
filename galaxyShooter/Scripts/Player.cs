@@ -88,25 +88,26 @@ public class Player : MonoBehaviour
         {
             case "TripleShot":
                 canTripleShot = true;
-                StartCoroutine(TripleShotOff());
                 break;
             case "SpeedBoost":
                 playerSpeed = playerSpeed + 3f;
-                StartCoroutine(SpeedBoostOff());
                 break;
-        }     
+        }
+        TurnOffPowerUp(type);
     }
 
-    public IEnumerator TripleShotOff()
+    public IEnumerable TurnOffPowerUp(string type)
     {
         yield return new WaitForSeconds(5.0f);
-        canTripleShot = false;
-    }
-    public IEnumerator SpeedBoostOff()
-    {
-        yield return new WaitForSeconds(5.0f);
-        playerSpeed = playerSpeed - 3f;
-
+        switch (type)
+        {
+            case "TripleShot":
+                canTripleShot = false;
+                break;
+            case "SpeedBost":
+                playerSpeed = playerSpeed - 3f;
+                break;
+        }
     }
 }
     
