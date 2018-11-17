@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
             case "TripleShot":
                 canTripleShot = false;
                 break;
-            case "SpeedBost":
+            case "SpeedBoost":
                 playerSpeed = playerSpeed - 3f;
                 break;
         }
