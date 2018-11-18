@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
+    public GameObject[] Fires;
+
     public Sprite[] LivesImage;
     public Image ImageLiveDisplay;
 
@@ -25,12 +27,16 @@ public class UIManager : MonoBehaviour {
         {
             case 10:
             ImageLiveDisplay.sprite = LivesImage[1];
+                Fires[1].SetActive(true);
                 break;
             case 20:
                 ImageLiveDisplay.sprite = LivesImage[2];
+                Fires[0].SetActive(true);
                 break;
             case 30:
                 ImageLiveDisplay.sprite = LivesImage[3];
+                Fires[0].SetActive(false);
+                Fires[1].SetActive(false);
                 break;
             default:
                 ImageLiveDisplay.sprite = LivesImage[3];

@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
 
+    public GameObject[] Fires;
+
     bool isDead = false;
 
     GameObject WorldController;
@@ -25,6 +27,13 @@ public class EnemyAI : MonoBehaviour
         if (coll.gameObject.tag == "Bullet")
 
         {
+            if(Life == 30)
+            {
+                Fires[0].SetActive(true);
+            }else if(Life == 20)
+            {
+                Fires[1].SetActive(true);
+            }
             Life = Life - 10;
             if (coll.transform.parent != null)
                 Destroy(coll.gameObject.transform.parent.gameObject);

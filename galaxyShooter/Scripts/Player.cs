@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
     private GameObject WorldController;
     bool amiLive;
 
@@ -114,6 +117,7 @@ public class Player : MonoBehaviour
 
     public void EnablePowerUp(string type)
     {
+        audioSource.Play();
         switch (type)
         {
             case "TripleShot":
