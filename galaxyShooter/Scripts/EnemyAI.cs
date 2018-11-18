@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : MonoBehaviour
+{
 
     bool isDead = false;
 
@@ -30,7 +31,8 @@ public class EnemyAI : MonoBehaviour {
             coll.gameObject.GetComponent<Player>().Damage();
     }
 
-    void Update () {
+    void Update()
+    {
 
         if (Life <= 0)
         {
@@ -39,9 +41,9 @@ public class EnemyAI : MonoBehaviour {
         }
 
         transform.Translate(Vector3.down * Speed * Time.deltaTime);
-        if(transform.position.y <= -7)
+        if (transform.position.y <= -7)
         {
-            transform.position = new Vector3(Random.Range(-7,7), 7) ;
-        }   
-	}
+            transform.position = new Vector3(Random.Range(-7, 7), 7);
+        }
+    }
 }

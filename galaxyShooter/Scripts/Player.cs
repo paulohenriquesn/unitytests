@@ -7,17 +7,23 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject WorldController;
-
     bool amiLive;
 
     public bool canTripleShot;
+    public bool isthereaShield;
+
+
     [SerializeField]
     int Life = 100;
 
     [SerializeField]
     private GameObject Laser;
+
     [SerializeField]
     private GameObject TripleShot;
+
+    [SerializeField]
+    private GameObject ShieldObject;
 
     [SerializeField]
     private float fireRate = 0.25f;
@@ -53,6 +59,12 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if (isthereaShield)
+        {
+            ShieldObject.gameObject.SetActive(false);
+            isthereaShield = false;
+            return;
+        }
         Life = Life - 10;
     }
 
@@ -110,6 +122,10 @@ public class Player : MonoBehaviour
             case "SpeedBoost":
                 playerSpeed = playerSpeed + 3f;
                 break;
+            case "Shield":
+                isthereaShield = true;
+                ShieldObject.gameObject.SetActive(true);
+                break;
         }
         StartCoroutine(TurnOffPowerUp(type));
     }
@@ -124,6 +140,9 @@ public class Player : MonoBehaviour
                 break;
             case "SpeedBoost":
                 playerSpeed = playerSpeed - 3f;
+                break;
+            case "Shield":
+                //
                 break;
         }
     }
