@@ -1,11 +1,18 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
 
+    [SerializeField]
+    private GameObject WorldController;
+
+    bool amiLive;
+
     public bool canTripleShot;
+    [SerializeField]
+    int Life = 100;
 
     [SerializeField]
     private GameObject Laser;
@@ -21,14 +28,32 @@ public class Player : MonoBehaviour
 
     private float horizontalInput, verticalInput;
 
+    void Start()
+    {
+        amiLive = true;
+    }
+
     void Update()
     {
+        if (Life <= 0)
+        {
+            if (amiLive == true)
+            {
+                WorldController.GetComponent<GameBehaviour>().SpawnExplosion(this.gameObject.transform.position, this.gameObject);
+                amiLive = false;
+            }
+        }
 
         Movement();
 
         if (Input.GetKeyDown(KeyCode.Space))
             Shoot();
 
+    }
+
+    public void Damage()
+    {
+        Life = Life - 10;
     }
 
     private void Shoot()
