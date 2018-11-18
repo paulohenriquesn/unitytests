@@ -8,6 +8,12 @@ public class GameBehaviour : MonoBehaviour
     bool CanISpawnPowerup;
     public GameObject[] Powerups;
 
+    public int Score = 0;
+
+
+    [SerializeField]
+    private GameObject Enemy;
+
     [SerializeField]
     private float TimeToDestroyPowerup = 5.0f;
 
@@ -17,9 +23,21 @@ public class GameBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject Explosion;
 
+    public GameObject MyCanvas;
+
     void Start()
     {
         CanISpawnPowerup = true;
+            StartCoroutine(SpawnEnemie());
+    }
+
+    IEnumerator SpawnEnemie()
+    {
+        while (true)
+        {
+            Instantiate(Enemy, new Vector3(Random.Range(-7, 7), 7), Quaternion.identity);
+            yield return new WaitForSeconds(10);
+        }
     }
 
     void Update()
@@ -42,9 +60,16 @@ public class GameBehaviour : MonoBehaviour
         GameObject explosion = Instantiate(Explosion, pos, Quaternion.identity) as GameObject;
         Destroy(explosion, 2.5f);
         Destroy(object_);
+        StartCoroutine(GoMenu());
     }
 
-    IEnumerator SpawnPowerup()
+    IEnumerator GoMenu()
+    {
+        yield return new WaitForSeconds(3);
+        MyCanvas.GetComponent<UIManager>().GoMenu();
+    }
+
+        IEnumerator SpawnPowerup()
     {
         yield return new WaitForSeconds(5.0f);
         int randomPowerUp = Random.Range(0, Powerups.Length);

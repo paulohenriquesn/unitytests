@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     [SerializeField]
     private GameObject WorldController;
     bool amiLive;
@@ -14,7 +13,7 @@ public class Player : MonoBehaviour
 
 
     [SerializeField]
-    int Life = 100;
+    int Life = 30;
 
     [SerializeField]
     private GameObject Laser;
@@ -41,6 +40,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        WorldController.GetComponent<GameBehaviour>().MyCanvas.GetComponent<UIManager>().UpdateLives(Life);
         if (Life <= 0)
         {
             if (amiLive == true)

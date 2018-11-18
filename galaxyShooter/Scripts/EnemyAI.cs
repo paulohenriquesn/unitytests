@@ -7,13 +7,18 @@ public class EnemyAI : MonoBehaviour
 
     bool isDead = false;
 
-    public GameObject WorldController;
+    GameObject WorldController;
 
     [SerializeField]
     private float Speed = 2.0f;
 
     [SerializeField]
-    private int Life = 100;
+    private int Life = 30;
+
+    void Start()
+    {
+        WorldController = GameObject.FindGameObjectWithTag("World");
+    }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
@@ -36,7 +41,9 @@ public class EnemyAI : MonoBehaviour
 
         if (Life <= 0)
         {
-            WorldController.gameObject.GetComponent<GameBehaviour>().SpawnEnemyExplosion(this.transform.position);
+            WorldController.GetComponent<GameBehaviour>().SpawnEnemyExplosion(this.transform.position);
+            WorldController.GetComponent<GameBehaviour>().MyCanvas.GetComponent<UIManager>().UpdateScore(WorldController.GetComponent<GameBehaviour>().Score);
+            Debug.Log(WorldController.GetComponent<GameBehaviour>().Score);
             Destroy(this.gameObject);
         }
 
